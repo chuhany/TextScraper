@@ -1,0 +1,44 @@
+Shopping.com Results Text Scraper
+
+@author: Chuhan Yang
+@date: Oct 5, 2014
+
+Supported Queries:
+Query 1: Total number of results
+         Given a keyword, such as "digital camera", return the total number of results found.
+Query 2: Result Object
+         Given a keyword (e.g. "digital cameras") and page number (e.g. "1"), return the results in a result object and then print results on screen. For each result, return the following information:
+             Title/Product Name (e.g. "Samsung TL100 Digital Camera")
+             Price of the product
+             Shipping Price (e.g. "Free Shipping", "$3.50")
+             Vendor (e.g. "Amazon", "5 stores")
+         At most 40 results are displayed per page
+
+
+Usage:
+Query 1: (requires a single argument)
+java -jar Assignment.jar <keyword> (e.g. java -jar Assignment.jar "baby strollers")
+Query 2: (requires two arguments)
+java -jar Assignment.jar <keyword> <page number> (e.g. java -jar Assignment.jar "baby strollers" 2)
+
+Structure:
+/src
+├── entity                         The package containing entities
+│   ├── Product.java               The class encapsulating all information of a product
+│   ├── ProductList.java           The list of Product objects in one page
+├── webcrawler                     The package containing the web crawler and the driver           
+│   ├── Main.java                  The driver of the program
+│   ├── WebCrawler.java            The text scraper supporting two types of queries
+
+Approaches:
+Java library jsoup is used to parse HTML.
+
+For Query 1, the program connect to the search result page of the keyword by concatenating the keyword to the url.
+From the page returned by GET method, the total number of results can be found in a class "numTotalResults".
+
+For Query 2, the program first connect to the first search result page of keyword using the same approach in Query 1.
+From that page, the total number of pages can be found. Then, compare that number with the page number entered by the user, 
+if the page number exceeds, a error is printed and the program returns. Otherwise, the program connect to the selected page.
+In the search result page, the information of each product is stored in a class "gridItemBtm". Different properties of 
+a product can be found in different elements in the class that represents the corresponding product. After parsing, all 
+required information is encapsulated in a Product object. All product objects in that page are stored in a ProductList.
