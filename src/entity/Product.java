@@ -1,3 +1,9 @@
+/**
+ * A entity class to encapsulate all information of a product
+ * 
+ * @author Chuhan Yang
+ */
+
 package entity;
 
 public class Product {
@@ -14,38 +20,22 @@ public class Product {
     }
     
     /**
-     * Get the title of the product
+     * Concatenate all information of a product into a string
      * 
-     * @return  title of the product 
+     * @return  a string containing all information of this product
      */
-    public String getTitle() {
-        return title;
-    }
-    
-    /**
-     * Get the price of the product
-     * 
-     * @return  price of the product 
-     */
-    public String getPrice() {
-        return price;
-    }
-    
-    /**
-     * Get the shipping price of the product
-     * 
-     * @return  shipping price of the product 
-     */
-    public String getShippingPrice() {
-        return shippingPrice;
-    }
-    
-    /**
-     * Get the vendor of the product
-     * 
-     * @return  vendor of the product 
-     */
-    public String getVendor() {
-        return vendor;
+    public String getInfo() {
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append("Name: " + title);
+        sb.append(System.getProperty("line.separator"));
+        sb.append("Price: " + price);
+        sb.append(System.getProperty("line.separator"));
+        sb.append("Shipping Price: " + shippingPrice);
+        sb.append(System.getProperty("line.separator"));
+        sb.append("Vendor: " + vendor);
+        sb.append(System.getProperty("line.separator"));
+        
+        return sb.toString();
     }
 }
